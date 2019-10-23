@@ -5,7 +5,7 @@
 
 struct pessoa {
     char *nome;
-    int idade, ID; // Identificador
+    int idade, ID = 0; // Identificador
     int matricula; // Deve ser gerada automaticamente
 };
 
@@ -43,7 +43,7 @@ void mudarOrientadorDeAluno();
 Docente *createDocente(Pessoa *p) {
     Docente *doc = (Docente *) malloc(sizeof(Docente));
 
-    doc->info_docente = p;
+    doc->info_docente = *p;
     doc->qtd_orientacoes_graduacao = 0;
     doc->qtd_orientacoes_pos_graduacao = 0;
     
@@ -51,13 +51,18 @@ Docente *createDocente(Pessoa *p) {
 }
 
 void cadastroDocente(Docente *doc) {
+    srand(time(NULL));
     printf("CADASTRO DE DOCENTE\n");
     printf("Informe o nome:"); scanf(" %[^\n]s", doc->info_docente.nome);
     printf("Informe a idade:"); scanf("%d", doc->info_docente.idade);
     // Implemetar a parte do id e da matricula automatica
+    doc->info_docente.ID += 1;
+    doc->info_docente.matricula = rand() % 1000;
 }
 
-void removerDocente();
+void removerDocente(Docente *doc){
+    
+}
 void alterarDocente();
 void buscarDocente();
 void mostrarDocente();
@@ -65,7 +70,7 @@ void mostrarDocente();
 Discente *createDiscente(Pessoa *p) {
     Discente *dis = (Discente *) malloc(sizeof(Discente));
 
-    dis->info_discente = p;
+    dis->info_discente = *p;
     dis->nivel = 0;
     dis->nome_curso = NULL;
     dis->senha = 0;
