@@ -50,8 +50,21 @@ void listarAlunoDeOrientador(Discente *dis, int ID_orientador, int qtd){
         }
     }
 }
-void listarAlunosSemOrientador();
-void mudarOrientadorDeAluno();
+void listarAlunosSemOrientador(Discente *dis, int qtd){
+    for(int i = 0; i < qtd; i++){
+        if(dis->ID_orientador == 0){
+            printf("Id | Nome: \n");
+            printf("%d | %s",dis->info_discente.ID,dis->info_discente.nome);
+        }
+    }
+}
+void mudarOrientadorDeAluno(Docente *doc, Discente *dis, int id){
+    
+    
+    
+    dis->ID_orientador = doc->info_docente.ID;
+
+}
 
 Docente *createDocente(Pessoa *p) {
     Docente *doc = (Docente *) malloc(sizeof(Docente));
