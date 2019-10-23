@@ -5,7 +5,7 @@
 
 struct pessoa {
     char *nome;
-    int idade, ID = 0; // Identificador
+    int idade, ID; // Identificador
     int matricula; // Deve ser gerada automaticamente
 };
 
@@ -36,7 +36,20 @@ Pessoa *createUser() {
     return p;
 }
 
-void listarAlunoDeOrientador();
+void listarAlunoDeOrientador(Discente *dis, int ID_orientador, int qtd){
+
+    for(int i = 0; i < qtd; i++){
+        if(ID_orientador == dis->ID_orientador){
+            printf("ID: %d\n",dis->info_discente.ID);
+            printf("Matricula: %d\n",dis->info_discente.matricula);
+            printf("Nome: %s\n",dis->info_discente.nome);
+            printf("Idade: %d\n",dis->info_discente.idade);
+            printf("Nivel: %d\n",dis->nivel);
+            printf("Nome do Curso: %s",dis->nome_curso);
+
+        }
+    }
+}
 void listarAlunosSemOrientador();
 void mudarOrientadorDeAluno();
 
@@ -46,6 +59,7 @@ Docente *createDocente(Pessoa *p) {
     doc->info_docente = *p;
     doc->qtd_orientacoes_graduacao = 0;
     doc->qtd_orientacoes_pos_graduacao = 0;
+    doc->info_docente.ID = 0;
     
     return doc;
 }
